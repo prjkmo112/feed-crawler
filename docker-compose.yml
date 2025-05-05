@@ -1,0 +1,10 @@
+services:
+    mysql:
+        image: mysql:8.4.5
+        container_name: datacrawler-mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_DATABASE=datacrawler
+        command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=2000 --information_schema_stats_expiry=0
+        ports:
+            - "3206:3306"

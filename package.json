@@ -1,0 +1,51 @@
+{
+  "name": "data-crawler",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "start": "cross-env NODE_ENV=prod tsx index.ts",
+    "dev": "cross-env NODE_ENV=dev tsx index.ts",
+    "dev:docker": "docker compose --env-file .env.dev up -d",
+    "prod:docker": "docker compose --env-file .env.prod up -d",
+    "dev:liquibase:update": "dotenv -e .env.dev -- tsx ./config/liquibaseConfig.ts update",
+    "prod:liquibase:update": "dotenv -e .env.prod -- tsx ./config/liquibaseConfig.ts update",
+    "dev:prisma:run": "./scripts/run-prisma.sh dev",
+    "prod:prisma:run": "./scripts/run-prisma.sh prod",
+    "prerun-dev": "dotenv -e .env.dev -- ./scripts/prerun.sh dev",
+    "prerun-prod": "dotenv -e .env.prod -- ./scripts/prerun.sh prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@types/node": "^22.14.1",
+    "@types/xml2js": "^0.4.14",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.23.0",
+    "globals": "^16.0.0",
+    "prisma": "^6.6.0",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.19.3",
+    "typescript-eslint": "^8.29.0"
+  },
+  "dependencies": {
+    "@mongodb-js/zstd": "^2.0.1",
+    "@prisma/client": "^6.6.0",
+    "axios": "^1.8.4",
+    "base32-encode": "^2.0.0",
+    "commander": "^13.1.0",
+    "dedent": "^1.5.3",
+    "dotenv": "^16.4.7",
+    "inquirer": "^12.6.0",
+    "liquibase": "^4.28.1",
+    "p-limit": "^6.2.0",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0",
+    "xml2js": "^0.6.2"
+  }
+}
